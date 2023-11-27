@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alunos",
+  "info": {
+    "singularName": "aluno",
+    "pluralName": "alunos",
+    "displayName": "Aluno",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "turma_id": {
+      "type": "string"
+    },
+    "pagante": {
+      "type": "boolean"
+    },
+    "regime": {
+      "type": "string"
+    },
+    "turma": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::turma.turma"
+    }
+  }
+}

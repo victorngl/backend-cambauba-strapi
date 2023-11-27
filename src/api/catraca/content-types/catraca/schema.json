@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "catraca",
+  "info": {
+    "singularName": "catraca",
+    "pluralName": "catracas",
+    "displayName": "Catraca",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}
