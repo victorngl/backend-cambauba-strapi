@@ -774,6 +774,37 @@ export interface ApiCursoCurso extends Schema.CollectionType {
   };
 }
 
+export interface ApiLeadLead extends Schema.CollectionType {
+  collectionName: 'leads';
+  info: {
+    singularName: 'lead';
+    pluralName: 'leads';
+    displayName: 'Lead';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    submissiondate: Attribute.DateTime;
+    formtitle: Attribute.String;
+    name: Attribute.String;
+    whatsapp: Attribute.String;
+    email: Attribute.Email;
+    segment: Attribute.String;
+    scheduled: Attribute.Boolean;
+    reason: Attribute.String;
+    status: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::lead.lead', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::lead.lead', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTurmaTurma extends Schema.CollectionType {
   collectionName: 'turmas';
   info: {
@@ -833,6 +864,7 @@ declare module '@strapi/types' {
       'api::aluno.aluno': ApiAlunoAluno;
       'api::catraca.catraca': ApiCatracaCatraca;
       'api::curso.curso': ApiCursoCurso;
+      'api::lead.lead': ApiLeadLead;
       'api::turma.turma': ApiTurmaTurma;
     }
   }

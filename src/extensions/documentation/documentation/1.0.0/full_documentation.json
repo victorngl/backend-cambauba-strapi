@@ -14,7 +14,7 @@
       "name": "",
       "url": ""
     },
-    "x-generation-date": "2023-11-27T19:50:23.467Z"
+    "x-generation-date": "2023-11-28T15:07:00.401Z"
   },
   "x-strapi-config": {
     "plugins": [],
@@ -1435,7 +1435,7 @@
           }
         }
       },
-      "MoveRequest": {
+      "LeadRequest": {
         "type": "object",
         "required": [
           "data"
@@ -1443,28 +1443,58 @@
         "properties": {
           "data": {
             "type": "object",
-            "properties": {}
+            "properties": {
+              "submissiondate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "formtitle": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "whatsapp": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "segment": {
+                "type": "string"
+              },
+              "scheduled": {
+                "type": "boolean"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
           }
         }
       },
-      "MoveListResponseDataItem": {
+      "LeadListResponseDataItem": {
         "type": "object",
         "properties": {
           "id": {
             "type": "number"
           },
           "attributes": {
-            "$ref": "#/components/schemas/Move"
+            "$ref": "#/components/schemas/Lead"
           }
         }
       },
-      "MoveListResponse": {
+      "LeadListResponse": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MoveListResponseDataItem"
+              "$ref": "#/components/schemas/LeadListResponseDataItem"
             }
           },
           "meta": {
@@ -1493,14 +1523,47 @@
           }
         }
       },
-      "Move": {
+      "Lead": {
         "type": "object",
         "properties": {
+          "submissiondate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "formtitle": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "whatsapp": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "segment": {
+            "type": "string"
+          },
+          "scheduled": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
           },
           "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
             "type": "string",
             "format": "date-time"
           },
@@ -1792,22 +1855,22 @@
           }
         }
       },
-      "MoveResponseDataObject": {
+      "LeadResponseDataObject": {
         "type": "object",
         "properties": {
           "id": {
             "type": "number"
           },
           "attributes": {
-            "$ref": "#/components/schemas/Move"
+            "$ref": "#/components/schemas/Lead"
           }
         }
       },
-      "MoveResponse": {
+      "LeadResponse": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/MoveResponseDataObject"
+            "$ref": "#/components/schemas/LeadResponseDataObject"
           },
           "meta": {
             "type": "object"
@@ -3557,7 +3620,7 @@
         "operationId": "delete/cursos/{id}"
       }
     },
-    "/move": {
+    "/leads": {
       "get": {
         "responses": {
           "200": {
@@ -3565,7 +3628,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MoveResponse"
+                  "$ref": "#/components/schemas/LeadListResponse"
                 }
               }
             }
@@ -3622,7 +3685,7 @@
           }
         },
         "tags": [
-          "Move"
+          "Lead"
         ],
         "parameters": [
           {
@@ -3727,16 +3790,16 @@
             }
           }
         ],
-        "operationId": "get/move"
+        "operationId": "get/leads"
       },
-      "put": {
+      "post": {
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MoveResponse"
+                  "$ref": "#/components/schemas/LeadResponse"
                 }
               }
             }
@@ -3793,16 +3856,188 @@
           }
         },
         "tags": [
-          "Move"
+          "Lead"
         ],
         "parameters": [],
-        "operationId": "put/move",
+        "operationId": "post/leads",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MoveRequest"
+                "$ref": "#/components/schemas/LeadRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leads/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Lead"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "get/leads/{id}"
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Lead"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "put/leads/{id}",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadRequest"
               }
             }
           }
@@ -3873,10 +4108,21 @@
           }
         },
         "tags": [
-          "Move"
+          "Lead"
         ],
-        "parameters": [],
-        "operationId": "delete/move"
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "delete/leads/{id}"
       }
     },
     "/turmas": {
